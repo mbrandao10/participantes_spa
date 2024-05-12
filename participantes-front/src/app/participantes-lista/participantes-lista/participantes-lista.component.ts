@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { Participantes } from '../model/participantes';
+import { ParticipantesListaService } from '../services/participantes-lista.service';
 
 @Component({
   selector: 'app-participantes-lista',
@@ -9,19 +11,15 @@ import { Participantes } from '../model/participantes';
 })
 export class ParticipantesListaComponent implements OnInit {
 
-  participantes_lista: Participantes[] = [
-    { _id: '1', nome: 'matheus', cpf: '123456643', telefone: '12123423453', sexo: 'M' },
-    { _id: '1', nome: 'matheus', cpf: '123456643', telefone: '12123423453', sexo: 'M' },
-    { _id: '1', nome: 'matheus', cpf: '123456643', telefone: '12123423453', sexo: 'M' },
-    { _id: '1', nome: 'matheus', cpf: '123456643', telefone: '12123423453', sexo: 'M' },
-    { _id: '1', nome: 'matheus', cpf: '123456643', telefone: '12123423453', sexo: 'M' },
-    { _id: '1', nome: 'matheus', cpf: '123456643', telefone: '12123423453', sexo: 'M' }
-  ];
+  participantes_lista$: Observable<Participantes[]>;
   displayedColumns = ['nome', 'cpf', 'telefone', 'sexo']
 
-  constructor() { }
+  constructor(
+    private participantesListaService: ParticipantesListaService
+  ) {
+    this.participantes_lista$ = this.participantesListaService.lista();
+   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }
