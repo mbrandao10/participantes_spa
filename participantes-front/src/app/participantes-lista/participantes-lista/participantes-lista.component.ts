@@ -15,7 +15,7 @@ import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/err
 export class ParticipantesListaComponent implements OnInit {
 
   participantes_lista$: Observable<Participantes[]>;
-  displayedColumns = ['nome', 'cpf', 'telefone', 'sexo']
+  displayedColumns = ['id', 'nome', 'cpf', 'telefone']
 
   constructor(
     private participantesListaService: ParticipantesListaService,

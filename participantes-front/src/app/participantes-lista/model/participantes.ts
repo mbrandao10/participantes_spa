@@ -3,5 +3,4 @@ export interface Participantes {
   nome: string;
   cpf: string;
   telefone: string;
-  sexo: string;
 }

@@ -9,7 +9,7 @@ import { Participantes } from './../model/participantes';
 })
 export class ParticipantesListaService {
 
-  private readonly API = '/assets/participantes.json';
+  private readonly API = 'api/participantes';
 
   constructor(
     private httpClient: HttpClient
