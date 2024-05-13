@@ -19,7 +19,7 @@ export class ParticipantesListaService {
     return this.httpClient.get<Participantes[]>(this.API)
     .pipe(
       first(),
-      // delay(5000), ***para testar spinner de carregamento
+      //delay(5000), //para testar spinner de carregamento
       tap(participantes => console.log(participantes))
     );
   }

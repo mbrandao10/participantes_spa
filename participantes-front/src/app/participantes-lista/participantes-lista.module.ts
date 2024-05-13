@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
+import { AppMaterialModule } from '../shared/app-material/app-material.module';
+import { SharedModule } from '../shared/shared.module';
 import { ParticipantesListaRoutingModule } from './participantes-lista-routing.module';
 import { ParticipantesListaComponent } from './participantes-lista/participantes-lista.component';
-import { AppMaterialModule } from '../shared/app-material/app-material.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { AppMaterialModule } from '../shared/app-material/app-material.module';
   imports: [
     CommonModule,
     ParticipantesListaRoutingModule,
-    AppMaterialModule
+    AppMaterialModule,
+    SharedModule
 
   ]
 })
