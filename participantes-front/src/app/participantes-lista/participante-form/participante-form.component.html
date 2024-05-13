@@ -16,6 +16,32 @@
         <mat-label>Telefone*</mat-label>
         <input matInput placeholder="Telefone" formControlName="telefone" />
       </mat-form-field>
+
+      <mat-form-field class="campos">
+        <mat-label>Sexo</mat-label>
+        <mat-select matNativeControl formControlName="sexo">
+          <mat-option value="null">--</mat-option>
+          <mat-option value="masculino">Masculino</mat-option>
+          <mat-option value="feminino">Feminino</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="campos">
+        <mat-label>Estado Civil</mat-label>
+        <mat-select formControlName="civil">
+          <mat-option value="null">--</mat-option>
+          <mat-option value="solteiro">Solteiro (a)</mat-option>
+          <mat-option value="casado">Casado (a)</mat-option>
+          <mat-option value="divorciado">Divorciado (a)</mat-option>
+          <mat-option value="viuvo">Viúvo (a)</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="campos">
+        <mat-label>Observações</mat-label>
+        <input matInput placeholder="Observações" formControlName="observacao" />
+      </mat-form-field>
+
     </form>
   </mat-card-content>
 

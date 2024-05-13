@@ -23,4 +23,8 @@ export class ParticipantesListaService {
       tap(participantes => console.log(participantes))
     );
   }
+
+  save(record: Participantes) {
+    return this.httpClient.post<Participantes>(this.API, record).pipe(first());
+  }
 }
