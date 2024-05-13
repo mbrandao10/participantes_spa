@@ -24,7 +24,7 @@ export class ParticipantesListaService {
     );
   }
 
-  save(record: Participantes) {
+  save(record:  Partial<Participantes>) {
     return this.httpClient.post<Participantes>(this.API, record).pipe(first());
   }
 }
