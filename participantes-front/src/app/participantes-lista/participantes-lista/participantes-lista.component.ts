@@ -16,7 +16,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ParticipantesListaComponent implements OnInit {
 
   participantes_lista$: Observable<Participantes[]>;
-  displayedColumns = ['id', 'nome', 'cpf', 'telefone', 'actions']
 
   constructor(
     private participantesListaService: ParticipantesListaService,

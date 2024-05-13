@@ -1,0 +1,45 @@
+<table
+mat-table
+[dataSource]="participantes"
+>
+<ng-container matColumnDef="id">
+  <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+  <mat-cell *matCellDef="let participante">{{ participante._id }}</mat-cell>
+</ng-container>
+
+<ng-container matColumnDef="nome">
+  <mat-header-cell *matHeaderCellDef>Nome</mat-header-cell>
+  <mat-cell *matCellDef="let participante">{{ participante.nome }}</mat-cell>
+</ng-container>
+
+<ng-container matColumnDef="cpf">
+  <mat-header-cell *matHeaderCellDef>CPF</mat-header-cell>
+  <mat-cell *matCellDef="let participante">{{ participante.cpf }}</mat-cell>
+</ng-container>
+
+<ng-container matColumnDef="telefone">
+  <mat-header-cell *matHeaderCellDef>Telefone</mat-header-cell>
+  <mat-cell *matCellDef="let participante">
+    {{ participante.telefone }}
+  </mat-cell>
+</ng-container>
+
+<ng-container matColumnDef="actions">
+  <mat-header-cell *matHeaderCellDef class="action-collun"> </mat-header-cell>
+  <mat-cell *matCellDef="let participante" class="action-collun">
+    <button mat-icon-button aria-label="Editar um participante">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      color="warn"
+      aria-label="Excluir um participante"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-cell>
+</ng-container>
+
+<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+<mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</table>

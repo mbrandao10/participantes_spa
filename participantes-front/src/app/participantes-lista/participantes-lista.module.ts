@@ -7,11 +7,14 @@ import { SharedModule } from '../shared/shared.module';
 import { ParticipanteFormComponent } from './participante-form/participante-form.component';
 import { ParticipantesListaRoutingModule } from './participantes-lista-routing.module';
 import { ParticipantesListaComponent } from './participantes-lista/participantes-lista.component';
+import { ParticipantesTableComponent } from './participantes-table/participantes-table.component';
 
 @NgModule({
   declarations: [
     ParticipantesListaComponent,
-    ParticipanteFormComponent
+    ParticipanteFormComponent,
+    ParticipantesTableComponent,
+    ParticipantesTableComponent
   ],
   imports: [
     CommonModule,

@@ -11,60 +11,16 @@
     </button>
   </mat-toolbar>
 
-  <div
-    *ngIf="participantes_lista$ | async as participantes_lista; else loading"
-  >
-    <table
-      mat-table
-      [dataSource]="participantes_lista"
-      class="mat-elevation-z8"
-    >
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>ID</th>
-        <td mat-cell *matCellDef="let participante">{{ participante._id }}</td>
-      </ng-container>
+  <div class="mat-elevation-z8 example-container">
+    <app-participantes-table
+      *ngIf="participantes_lista$ | async as participantes_lista; else loading"
+      [participantes]="participantes_lista"
+    ></app-participantes-table>
 
-      <ng-container matColumnDef="nome">
-        <th mat-header-cell *matHeaderCellDef>Nome</th>
-        <td mat-cell *matCellDef="let participante">{{ participante.nome }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="cpf">
-        <th mat-header-cell *matHeaderCellDef>CPF</th>
-        <td mat-cell *matCellDef="let participante">{{ participante.cpf }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="telefone">
-        <th mat-header-cell *matHeaderCellDef>Telefone</th>
-        <td mat-cell *matCellDef="let participante">
-          {{ participante.telefone }}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="actions">
-        <mat-header-cell *matHeaderCellDef> </mat-header-cell>
-        <mat-cell *matCellDef="let participante">
-          <button mat-icon-button aria-label="Editar um participante">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button
-            mat-icon-button
-            color="warn"
-            aria-label="Excluir um participante"
-          >
-            <mat-icon>delete</mat-icon>
-          </button>
-        </mat-cell>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
+    <ng-template #loading>
+      <div class="loading-spinner">
+        <mat-spinner> </mat-spinner>
+      </div>
+    </ng-template>
   </div>
-
-  <ng-template #loading>
-    <div class="loading-spinner">
-      <mat-spinner> </mat-spinner>
-    </div>
-  </ng-template>
 </mat-card>
