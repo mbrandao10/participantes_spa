@@ -6,6 +6,7 @@ import { Participantes } from '../model/participantes';
 import { ParticipantesListaService } from '../services/participantes-lista.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-participantes-lista',
@@ -15,11 +16,13 @@ import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/err
 export class ParticipantesListaComponent implements OnInit {
 
   participantes_lista$: Observable<Participantes[]>;
-  displayedColumns = ['id', 'nome', 'cpf', 'telefone']
+  displayedColumns = ['id', 'nome', 'cpf', 'telefone', 'actions']
 
   constructor(
     private participantesListaService: ParticipantesListaService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.participantes_lista$ = this.participantesListaService.lista().pipe(
       catchError(error =>{
@@ -36,5 +39,9 @@ export class ParticipantesListaComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  onAdd() {
+    this.router.navigate(['new'], {relativeTo: this.route});
+  }
 
 }
