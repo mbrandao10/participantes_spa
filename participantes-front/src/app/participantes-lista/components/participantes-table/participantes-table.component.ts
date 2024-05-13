@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Participantes } from '../model/participantes';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
+import { Participantes } from '../../model/participantes';
 
 @Component({
   selector: 'app-participantes-table',
@@ -10,16 +10,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ParticipantesTableComponent implements OnInit {
 
   @Input() participantes: Participantes[] = [];
+  @Output() add = new EventEmitter(false);
 
   readonly displayedColumns = ['id', 'nome', 'cpf', 'telefone', 'actions'];
 
-  constructor(private router: Router,
-    private route: ActivatedRoute) { }
+  constructor() { }
 
   ngOnInit(): void { }
 
   onAdd() {
-    this.router.navigate(['new'], { relativeTo: this.route });
+    this.add.emit(true);
   }
 
 }

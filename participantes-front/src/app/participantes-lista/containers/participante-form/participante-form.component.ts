@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { ParticipantesListaService } from '../services/participantes-lista.service';
+import { ParticipantesListaService } from '../../services/participantes-lista.service';
 
 @Component({
   selector: 'app-participante-form',

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-
-import { Participantes } from '../model/participantes';
-import { ParticipantesListaService } from '../services/participantes-lista.service';
-import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
-import { ActivatedRoute, Router } from '@angular/router';
+
+import { Participantes } from '../../model/participantes';
+import { ParticipantesListaService } from '../../services/participantes-lista.service';
 
 @Component({
   selector: 'app-participantes-lista',
