@@ -1,5 +1,13 @@
 <mat-card>
-  <mat-toolbar color="accent"> Lista de Participantes </mat-toolbar>
+  <mat-toolbar color="accent">
+    Lista de Participantes
+    <button mat-raised-button color="primary"
+    style="margin-left: auto;"
+    (click)="onAdd()"
+    >
+      Novo Participante
+    </button>
+  </mat-toolbar>
 
   <div
     *ngIf="participantes_lista$ | async as participantes_lista; else loading"
@@ -29,6 +37,20 @@
         <td mat-cell *matCellDef="let participante">
           {{ participante.telefone }}
         </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>
+          <button mat-icon-button aria-label="Editar um participante">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" aria-label="Excluir um participante">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let participante">
+
+        </mat-cell>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
