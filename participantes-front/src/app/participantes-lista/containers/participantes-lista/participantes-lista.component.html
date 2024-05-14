@@ -16,6 +16,7 @@
       *ngIf="participantes_lista$ | async as participantes_lista; else loading"
       [participantes]="participantes_lista"
       (add)="onAdd()"
+      (edit)="onEdit($event)"
     ></app-participantes-table>
 
     <ng-template #loading>

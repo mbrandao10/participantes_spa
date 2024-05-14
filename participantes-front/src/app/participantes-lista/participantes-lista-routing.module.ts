@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ParticipantesListaComponent } from './containers/participantes-lista/participantes-lista.component';
 import { ParticipanteFormComponent } from './containers/participante-form/participante-form.component';
+import { ParticipantesListaComponent } from './containers/participantes-lista/participantes-lista.component';
+import { ParticipantesResolver } from './guards/participantes.resolver';
 
 const routes: Routes = [
   { path: '', component: ParticipantesListaComponent },
-  { path: 'new', component: ParticipanteFormComponent }
+  { path: 'new', component: ParticipanteFormComponent , resolve: { participantes: ParticipantesResolver } },
+  { path: 'edit/:id', component: ParticipanteFormComponent, resolve: { participantes: ParticipantesResolver } }
 ];
 
 @NgModule({

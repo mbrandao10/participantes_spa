@@ -43,4 +43,8 @@ export class ParticipantesListaComponent implements OnInit {
     this.router.navigate(['new'], {relativeTo: this.route});
   }
 
+  onEdit(participante: Participantes) {
+    this.router.navigate(['edit', participante._id], { relativeTo: this.route });
+  }
+
 }
