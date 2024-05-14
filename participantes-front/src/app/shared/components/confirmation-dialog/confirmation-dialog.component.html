@@ -1,0 +1,28 @@
+<div mat-dialog-content>
+  <h2>
+    <strong>{{ data }}</strong>
+  </h2>
+</div>
+<div mat-dialog-actions align="center">
+  <div style="padding: 10%">
+    <button
+      mat-raised-button
+      (click)="onConfirm(true)"
+      color="primary"
+      class="class-button"
+    >
+      <strong> Sim </strong>
+    </button>
+  </div>
+  <div style="padding: 10%">
+    <button
+      mat-stroked-button
+      (click)="onConfirm(false)"
+      style="color: red"
+      class="class-button"
+      mat-dialog-close
+    >
+      <strong> Não </strong>
+    </button>
+  </div>
+</div>

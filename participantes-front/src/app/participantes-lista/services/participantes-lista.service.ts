@@ -45,4 +45,8 @@ export class ParticipantesListaService {
     return this.httpClient.put<Participantes>(`${this.API}/${record._id}`, record).pipe(first());
   }
 
+  remove (id: string){
+    return this.httpClient.delete(`${this.API}/${id}`).pipe(first());
+  }
+
 }
