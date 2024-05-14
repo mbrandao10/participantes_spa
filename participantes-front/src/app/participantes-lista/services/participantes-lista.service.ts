@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { delay, first, tap } from 'rxjs/operators';
+import { first, tap } from 'rxjs/operators';
 
 import { Participantes } from './../model/participantes';
 
@@ -24,7 +24,25 @@ export class ParticipantesListaService {
     );
   }
 
-  save(record:  Partial<Participantes>) {
-    return this.httpClient.post<Participantes>(this.API, record).pipe(first());
+  loadById(id: string) {
+    return this.httpClient.get<Participantes>(`${this.API}/${id}`);
   }
+
+  save(record:  Partial<Participantes>) {
+    if (record._id){
+      return this.update(record);
+    }
+    return this.create(record);
+
+  }
+
+  private create (record:  Partial<Participantes>){
+    return this.httpClient.post<Participantes>(this.API, record).pipe(first());
+
+  }
+
+  private update (record:  Partial<Participantes>){
+    return this.httpClient.put<Participantes>(`${this.API}/${record._id}`, record).pipe(first());
+  }
+
 }

@@ -1,9 +1,11 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { NonNullableFormBuilder, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { NonNullableFormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
 
 import { ParticipantesListaService } from '../../services/participantes-lista.service';
+import { Participantes } from './../../model/participantes';
 
 @Component({
   selector: 'app-participante-form',
@@ -13,6 +15,7 @@ import { ParticipantesListaService } from '../../services/participantes-lista.se
 export class ParticipanteFormComponent implements OnInit {
 
   form = this.formBuilder.group({
+    _id: [''],
     nome: [''],
     cpf: [''],
     telefone: [''],
@@ -25,11 +28,23 @@ export class ParticipanteFormComponent implements OnInit {
     private formBuilder: NonNullableFormBuilder,
     private service: ParticipantesListaService,
     private snackBar: MatSnackBar,
-    private location: Location
+    private location: Location,
+    private route: ActivatedRoute
 
   ) {}
 
   ngOnInit(): void {
+    const participantes: Participantes = this.route.snapshot.data['participantes'];
+    this.form.setValue({
+      _id: participantes._id,
+      nome: participantes.nome,
+      cpf: participantes.cpf,
+      telefone: participantes.telefone,
+      sexo: participantes.sexo,
+      civil: participantes.civil,
+      observacao: participantes.observacao
+
+    });
   }
 
   onSubmit() {

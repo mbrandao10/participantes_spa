@@ -1,5 +1,6 @@
 <mat-card>
-  <mat-toolbar color="accent"> Novo Participante </mat-toolbar>
+  <mat-toolbar color="accent" *ngIf="!this.form.value._id"> Novo Participante </mat-toolbar>
+  <mat-toolbar color="accent" *ngIf="this.form.value._id"> Editar Participante </mat-toolbar>
   <mat-card-content>
     <form [formGroup]="form" class="min-width">
       <mat-form-field appearance="fill" class="campos">

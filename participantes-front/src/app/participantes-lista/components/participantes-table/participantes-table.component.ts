@@ -11,6 +11,7 @@ export class ParticipantesTableComponent implements OnInit {
 
   @Input() participantes: Participantes[] = [];
   @Output() add = new EventEmitter(false);
+  @Output() edit = new EventEmitter(false);
 
   readonly displayedColumns = ['id', 'nome', 'cpf', 'telefone', 'actions'];
 
@@ -20,6 +21,10 @@ export class ParticipantesTableComponent implements OnInit {
 
   onAdd() {
     this.add.emit(true);
+  }
+
+  onEdit(participante: Participantes){
+    this.edit.emit(participante);
   }
 
 }
