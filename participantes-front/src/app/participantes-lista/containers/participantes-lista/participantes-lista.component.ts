@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 
 import { Participantes } from '../../model/participantes';
 import { ParticipantesListaService } from '../../services/participantes-lista.service';
+import { ParticipantePage } from '../../model/participante-Page';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-participantes-lista',
@@ -17,7 +19,12 @@ import { ParticipantesListaService } from '../../services/participantes-lista.se
 })
 export class ParticipantesListaComponent implements OnInit {
 
-  participantes_lista$: Observable<Participantes[]> | null = null;
+  participantes_lista$: Observable<ParticipantePage> | null = null;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  pageIndex = 0;
+  pageSize = 10;
 
   constructor(
     private participantesListaService: ParticipantesListaService,
@@ -29,11 +36,16 @@ export class ParticipantesListaComponent implements OnInit {
     this.refresh();
    }
 
-   refresh() {
-    this.participantes_lista$ = this.participantesListaService.lista().pipe(
+   refresh(pageEvent: PageEvent = {length: 0, pageIndex: 0, pageSize: 10} ) {
+    this.participantes_lista$ = this.participantesListaService.lista(pageEvent.pageIndex, pageEvent.pageSize)
+    .pipe(
+      tap(() => {
+        this.pageIndex = pageEvent.pageIndex;
+        this.pageSize = pageEvent.pageSize;
+      }),
       catchError(error =>{
         this.onError('Erro ao carregar Lista de perticipantes.')
-        return of([])
+        return of({participantes: [], totalEllements: 0, totalPages: 0})
       } )
     );
    }
