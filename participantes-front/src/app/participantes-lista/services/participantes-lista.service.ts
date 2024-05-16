@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { first, tap } from 'rxjs/operators';
 
 import { Participantes } from './../model/participantes';
+import { ParticipantePage } from '../model/participante-Page';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,8 @@ export class ParticipantesListaService {
     private httpClient: HttpClient
   ) { }
 
-  lista() {
-    return this.httpClient.get<Participantes[]>(this.API)
+  lista(page: number = 0, pageSize: number = 10) {
+    return this.httpClient.get<ParticipantePage>(this.API, {params: { page, pageSize }})
     .pipe(
       first(),
       //delay(5000), //para testar spinner de carregamento
