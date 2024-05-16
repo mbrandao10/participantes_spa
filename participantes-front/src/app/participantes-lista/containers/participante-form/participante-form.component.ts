@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { NonNullableFormBuilder } from '@angular/forms';
+import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 
@@ -16,11 +16,16 @@ export class ParticipanteFormComponent implements OnInit {
 
   form = this.formBuilder.group({
     _id: [''],
-    nome: [''],
-    cpf: [''],
-    telefone: [''],
-    sexo: [''],
-    civil: [''],
+    nome: ['',[Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(100)]],
+    cpf: ['', [Validators.required,
+      Validators.minLength(11),
+      Validators.maxLength(11)
+    ]],
+    telefone: ['', [Validators.required]],
+    sexo: ['', [Validators.required]],
+    civil: ['', [Validators.required]],
     observacao: ['']
   });
 
@@ -65,4 +70,32 @@ export class ParticipanteFormComponent implements OnInit {
     this.snackBar.open('Erro ao salvar participante', 'fechar', {duration: 3000});
   }
 
+  getErrorMessage(fieldName: string) {
+    const field = this.form.get(fieldName);
+
+    if (field?.hasError('required')) {
+      return 'Campo obrigatório';
+    }
+
+    if (field?.hasError('minlength')) {
+      const requiredLength: number = field.errors ? field.errors['minlength']['requiredLength'] : 3;
+      return `Tamanho mínimo precisa ser de ${requiredLength} caracteres.`;
+    }
+
+    if (field?.hasError('maxlength')) {
+      const requiredLength: number = field.errors ? field.errors['maxlength']['requiredLength'] : 200;
+      return `Tamanho máximo excedido de ${requiredLength} caracteres.`;
+    }
+    if (field?.hasError('minlengthCpf')) {
+      const requiredLength: number = field.errors ? field.errors['minlength']['requiredLength'] : 11;
+      return `Tamanho mínimo precisa ser de ${requiredLength} caracteres.`;
+    }
+
+    if (field?.hasError('maxlengthCpf')) {
+      const requiredLength: number = field.errors ? field.errors['maxlength']['requiredLength'] : 11;
+      return `Tamanho máximo excedido de ${requiredLength} caracteres.`;
+    }
+
+    return 'Campo Inválido';
+  }
 }
